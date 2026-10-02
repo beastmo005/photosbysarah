@@ -410,6 +410,9 @@ img { max-width: 100%; display: block; }
   font-size: 0.85rem;
   font-style: italic;
 }
+.resume-entry ul { list-style: disc; padding-left: 1.25rem; margin: 0.4rem 0 0; }
+.resume-entry li { margin-bottom: 0.3rem; }
+.resume-section > p { margin-bottom: 0.5rem; }
 
 /* ---------- Footer ---------- */
 .site-footer {
