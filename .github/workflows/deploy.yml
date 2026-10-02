@@ -1,0 +1,54 @@
+# Publishes the live site from `master` at the root and the trial site from
+# `staging` at /preview/. Push to staging to review changes; merge to master to go live.
+name: Deploy site
+
+on:
+  push:
+    branches: [master, staging]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          path: live
+
+      - uses: actions/checkout@v4
+        with:
+          ref: staging
+          path: preview
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site/preview
+          rsync -a --exclude .git --exclude .github live/ _site/
+          rsync -a --exclude .git --exclude .github --exclude CNAME preview/ _site/preview/
+          # Keep the preview out of search results and label it clearly
+          for f in _site/preview/*.html; do
+            sed -i 's#<head>#<head>\n  <meta name="robots" content="noindex, nofollow">#' "$f"
+            sed -i 's#<body>#<body>\n  <div style="background:\#b5651d;color:\#fff;text-align:center;padding:6px;font:600 13px sans-serif;letter-spacing:1px;">PREVIEW — not the live site</div>#' "$f"
+          done
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
