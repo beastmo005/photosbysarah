@@ -349,6 +349,11 @@ img { max-width: 100%; display: block; }
   object-position: center 30%;
 }
 
+.card-img--contain {
+  object-fit: contain;
+  background: #fdfbf6;
+}
+
 .card-body { padding: 1.5rem; }
 
 .card-body h3 { margin-bottom: 0.4rem; }
