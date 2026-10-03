@@ -349,10 +349,8 @@ img { max-width: 100%; display: block; }
   object-position: center 30%;
 }
 
-.card-img--contain {
-  object-fit: contain;
-  background: #fdfbf6;
-}
+/* Wide graphic padded on both sides; centered so the subject is never cropped */
+.card-img--wide { object-position: center; }
 
 .card-body { padding: 1.5rem; }
 
@@ -479,6 +477,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
   .logo { font-size: 1.1rem; }
+  .card-img--wide { height: auto; aspect-ratio: 1012 / 675; object-fit: cover; }
 
   .main-nav {
     position: fixed;
