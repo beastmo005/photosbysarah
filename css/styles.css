@@ -339,7 +339,15 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 16px 32px rgba(0,0,0,0.08);
 }
 
-.card .placeholder-img { height: 200px; border-radius: 0; }
+.card .placeholder-img { height: 300px; border-radius: 0; }
+
+.card-img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center 30%;
+}
 
 .card-body { padding: 1.5rem; }
 
