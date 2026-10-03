@@ -374,7 +374,7 @@ img { max-width: 100%; display: block; }
 
 .gallery-intro { margin-bottom: 2rem; }
 
-/* 8 portrait photos: 4 across on desktop, 2 across on tablets and phones */
+/* Portfolio grid: 4 across on desktop, 2 across on tablets and phones */
 .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 
 .gallery-item {
